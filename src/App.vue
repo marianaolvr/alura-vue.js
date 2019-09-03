@@ -3,7 +3,7 @@
     <h1>{{ titulo }}</h1>
 
     <ul>
-      <li v-for-key="foto of fotos">
+      <li v-for="foto of fotos">
         <img :src="foto.url" :alt="foto.titulo">
       </li>
     </ul>
@@ -16,19 +16,16 @@ export default {
 data(){
   return{
     titulo: 'Alurapic',
-    fotos: [
-{
-  url: 'https://abrilsuperinteressante.files.wordpress.com/2016/03/cachorro.png',
-  titulo: 'cachorro'
-},
-{
-  url: 'https://abrilsuperinteressante.files.wordpress.com/2016/03/cachorro.png',
-  titulo: 'cachorro'
-}
-   ]
+    fotos: []
   }
+},
+  created(){
+
+  this.$http.get('http://localhost:3000/v1/fotos')
+  .then(res => res.json())
+  .then(fotos => this.fotos = fotos, err => console.log(err));
 }
-};
+}
 </script>
 
 <style>
