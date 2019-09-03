@@ -3,8 +3,8 @@
     <h1>{{ titulo }}</h1>
 
     <ul>
-      <li v-for="foto of fotos">
-        <img :src="foto.url" :alt="foto.titulo" />
+      <li v-for-key="foto of fotos">
+        <img :src="foto.url" :alt="foto.titulo">
       </li>
     </ul>
   </div>
